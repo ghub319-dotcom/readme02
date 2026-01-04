@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Readify — Feedback</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="brand">
+        <div style="width:46px;height:46px;border-radius:8px;background:linear-gradient(90deg,#7e57c2,#5e35b1);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">R</div>
+        <div>
+          <h1>Readify</h1>
+          <p>Contact & Feedback</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home🧠</a>
+        <a href="book-explorer.html">Explore📊</a>
+        <a href="progress.html">Progress📆</a>
+        <a href="recommender.html">Recommender🔑</a>
+        <a href="reading-flow.html">Reading Flow📕📙</a>
+        <a href="feedback.html">Feedback📥</a>
+      </nav>
+      <button class="hamburger" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+    <section style="margin-top:18px">
+      <h3>Our Location</h3>
+      <div class="card map-container" style="padding:0;margin-top:8px">
+        <iframe title="Readify location" class="map-embed" src="https://maps.google.com/maps?q=New%20York&z=12&output=embed" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div style="margin-top:8px"><a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="button-link">Open in Google Maps</a></div>
+    </section>
+    <div class="nav-bar"><div class="nav-progress" style="width:0%" title="0%"></div></div>
+  </header>
+
+  <main class="container" style="padding-top:18px">
+    <h2>💬 Feedback</h2>
+    <p>Your opinion matters! Help us improve Readify by sharing your thoughts, reporting issues, or suggesting new features. We read every message and use your feedback to make the platform better for all readers.</p>
+    <div class="card" style="margin-top:12px">
+      <form id="feedbackForm" style="display:flex;flex-direction:column;gap:10px">
+        <input id="fbName" class="input" placeholder="👤 Your name (required)">
+        <input id="fbEmail" class="input" placeholder="📧 your@email.com (required)" type="email">
+        <textarea id="fbMessage" class="input" placeholder="✍️ Tell us how we can improve (min 10 chars)" rows="4"></textarea>
+        <div style="display:flex;gap:12px">
+          <button type="submit">📤 Send Feedback</button>
+          <button type="button" class="secondary" id="clearFeedback">🗑️ Clear</button>
+        </div>
+        <div id="fbMsg" class="small-muted" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <section style="margin-top:18px">
+      <h3>❓ FAQs</h3>
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-title">How does "Author of the Day" work?</div>
+          <div class="accordion-body">We use a simple date-based selection to highlight a different author each day from our catalog.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-title">Can I suggest books?</div>
+          <div class="accordion-body">Yes — use the feedback form and include book details; the team will review suggestions weekly.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-title">Where is my saved book list?</div>
+          <div class="accordion-body">Book recommendations and progress are saved locally in your browser using LocalStorage.</div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:20px">
+      <h3>How to Use Readify</h3>
+      <div class="card" style="padding:12px">
+        <div class="video-embed-wrap">
+          <iframe class="video-embed" src="https://www.youtube.com/embed/stjUOFzx8LQ" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center">
+        <div>
+          <div style="font-weight:700">Readify</div>
+          <div class="small-muted">Thanks for your input</div>
+        </div>
+        <div class="small-muted">© Readify 2025</div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('clearFeedback')?.addEventListener('click', ()=>{ document.getElementById('feedbackForm').reset(); document.getElementById('fbMsg').textContent=''; });
+  </script>
+  <script src="js/feedback.extra.js"></script>
+</body>
+</html>

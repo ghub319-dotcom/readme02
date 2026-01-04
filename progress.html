@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Readify — Progress Tracker</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="brand">
+        <div style="width:46px;height:46px;border-radius:8px;background:linear-gradient(90deg,#7e57c2,#5e35b1);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">R</div>
+        <div>
+          <h1>Readify</h1>
+          <p>Track your progress</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home🧠</a>
+        <a href="book-explorer.html">Explore📊</a>
+        <a href="progress.html">Progress📆</a>
+        <a href="recommender.html">Recommender🔑</a>
+        <a href="reading-flow.html">Reading Flow📕📙</a>
+        <a href="feedback.html">Feedback📥</a>
+      </nav>
+      <button class="hamburger" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-bar"><div class="nav-progress" style="width:0%" title="0%"></div></div>
+  </header>
+
+  <main class="container" style="padding-top:18px">
+    <h2>📈 Reading Progress Tracker</h2>
+    <p>Stay motivated and on track with your reading goals. Enter your book's details below to monitor your progress, estimate completion dates, and celebrate your achievements. Your data is saved locally for privacy.</p>
+    <div class="card progress-tracker-card">
+      <form id="progressForm" style="display:flex;flex-direction:column;gap:10px">
+        <label>Book Title <input id="bookTitle" class="input" placeholder="Optional"></label>
+        <div class="form-row">
+          <label>Total pages <div style="display:flex;gap:4px;align-items:center"><input id="totalPages" class="input" type="number" style="flex:1"><button type="button" class="arrow-btn" data-target="totalPages" data-dir="1">▲</button><button type="button" class="arrow-btn" data-target="totalPages" data-dir="-1">▼</button></div></label>
+          <label>Pages read <div style="display:flex;gap:4px;align-items:center"><input id="pagesRead" class="input" type="number" style="flex:1"><button type="button" class="arrow-btn" data-target="pagesRead" data-dir="1">▲</button><button type="button" class="arrow-btn" data-target="pagesRead" data-dir="-1">▼</button></div></label>
+          <label>Speed (pages/day) <div style="display:flex;gap:4px;align-items:center"><input id="speedPerDay" class="input" type="number" style="flex:1"><button type="button" class="arrow-btn" data-target="speedPerDay" data-dir="1">▲</button><button type="button" class="arrow-btn" data-target="speedPerDay" data-dir="-1">▼</button></div></label>
+        </div>
+        <div class="form-row" style="align-items:center">
+          <div style="flex:1">
+            <div class="small-muted">Completion</div>
+            <div class="progress-bar" style="margin-top:6px"><div class="progress-value" style="width:0%"></div></div>
+          </div>
+          <div style="min-width:100px;text-align:right">
+            <div class="animated-number" id="pctComplete">0%</div>
+            <div class="small-muted">Est. finish: <span id="estFinish">—</span></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <button type="button" id="saveProgress">Save Progress</button>
+          <button type="button" id="clearProgress" class="secondary">Clear</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>🎯 Reading Goals</h3>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <label>Daily pages goal <input id="dailyPagesGoal" class="input" type="number" placeholder="e.g. 50"></label>
+        <label>Weekly books goal <input id="weeklyBooksGoal" class="input" type="number" placeholder="e.g. 2"></label>
+        <label>Monthly pages goal <input id="monthlyPagesGoal" class="input" type="number" placeholder="e.g. 1500"></label>
+        <button type="button" id="saveGoals">Save Goals</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>📊 Reading Statistics</h3>
+      <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+        <button class="stat-filter active" data-period="all">All Time</button>
+        <button class="stat-filter" data-period="month">This Month</button>
+        <button class="stat-filter" data-period="week">This Week</button>
+        <button id="calculateStats" class="secondary">🔄 Calculate</button>
+        <button id="resetStats" class="secondary" style="margin-left:auto">Reset Stats</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px" id="statsGrid">
+        <div class="stat-item">
+          <div class="stat-number" id="totalPagesRead">0</div>
+          <div class="stat-label">Total Pages Read</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="totalBooksCompleted">0</div>
+          <div class="stat-label">Books Completed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="averageSpeed">0</div>
+          <div class="stat-label">Avg Pages/Day</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="readingStreak">0</div>
+          <div class="stat-label">Reading Streak (Days)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>📚 Recent Progress</h3>
+      <ul id="progressHistory" class="progress-list">
+        <li class="small-muted">No progress entries yet.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center">
+        <div>
+          <div style="font-weight:700">Readify</div>
+          <div class="small-muted">Keep tracking</div>
+        </div>
+        <div class="small-muted">© Readify 2025</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Clear saved progress
+    document.getElementById('clearProgress')?.addEventListener('click', ()=>{ localStorage.removeItem('readify-progress'); location.reload(); });
+  </script>
+  <script src="js/progress.extra.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "Readify - Interactive Reading Platform",
+  "short_name": "Readify",
+  "description": "Make reading fun and engaging every day with personalized recommendations, progress tracking, and immersive reading environments.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#844ee7",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
